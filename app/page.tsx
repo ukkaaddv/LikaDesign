@@ -227,7 +227,7 @@ export default function Home() {
                 <p>Années d{`'`}expérience</p>
               </div>
               <div>
-                <p className="text-3xl font-semibold text-white">150+</p>
+                <p className="text-3xl font-semibold text-white">50+</p>
                 <p>Projets livrés</p>
               </div>
             </div>
