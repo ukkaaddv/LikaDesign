@@ -19,12 +19,20 @@ export function FacebookLink({
     (event: MouseEvent<HTMLAnchorElement>) => {
       event.preventDefault();
 
-      const timeout = window.setTimeout(() => {
+      const userAgent = window.navigator.userAgent || "";
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent);
+
+      if (!isMobile) {
         window.open(webUrl, "_blank", "noopener,noreferrer");
+        return;
+      }
+
+      const timeout = window.setTimeout(() => {
+        window.location.href = webUrl;
       }, 800);
 
       const clearFallback = () => {
-        clearTimeout(timeout);
+        window.clearTimeout(timeout);
         document.removeEventListener("visibilitychange", clearFallback);
       };
 

@@ -14,6 +14,7 @@ type MobileNavProps = {
   ctaHref: string;
   contactEmail: string;
   contactPhone: string;
+  theme: "dark" | "light";
 };
 
 const MENU_TRANSITION_MS = 300;
@@ -24,6 +25,7 @@ export function MobileNav({
   ctaHref,
   contactEmail,
   contactPhone,
+  theme,
 }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [container, setContainer] = useState<Element | null>(null);
@@ -198,12 +200,17 @@ export function MobileNav({
         )
       : null;
 
+  const triggerClasses =
+    theme === "light"
+      ? "inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-400 bg-neutral-200 text-neutral-700 transition hover:border-orange-500 hover:text-orange-500 md:hidden"
+      : "inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-orange-500 hover:text-orange-400 md:hidden";
+
   return (
     <>
       <button
         type="button"
         ref={triggerRef}
-        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition hover:border-orange-500 hover:text-orange-400 md:hidden"
+        className={triggerClasses}
         aria-label="Ouvrir le menu"
         aria-expanded={isOpen}
         aria-controls={isOpen ? dialogId : undefined}
